@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.pythonPath": "/home/sohan/gitprojects/url-shortner/url_shortner/.env/bin/python3.8"
+}
