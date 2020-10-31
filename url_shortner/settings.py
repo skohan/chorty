@@ -23,9 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e9xd%f23@&$*vy-oqacuz(=izwg9cpm3v$i@=!nx-b#^$8ep#$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG                   =   True
+SESSION_COOKIE_SECURE   =   True
+CSRF_COOKIE_SECURE      =   True
+SECURE_SSL_REDIRECT     =   False
+
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -120,7 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = './shorty/templates/shorty'
 CRISPY_TEMPLATE_PACK =  "bootstrap4"
 LOGIN_REDIRECT_URL = "home"
 LOGIN_URL = 'login'
