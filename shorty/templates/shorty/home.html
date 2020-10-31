@@ -4,23 +4,24 @@
 {% load crispy_forms_tags %}
 
 <div class="container">
-    <legend>Welcome {{ user.username }}</legend>
+    <legend>Welcome {{ user.username }} </legend>
 </div>
 
-{% for message in messages %}
-<div class="alert alert-{{message.tags}}" role="alert">
-    {{ message }}
-</div>
-{% endfor %}
+
 
 <div class="container-sm" style="max-width: 600px;">
-    <form action="/home" method="POST" >
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <form action="/home" method="POST">
         {% csrf_token %}
-    
+
         <legend class="border-bottom mb-4">Create custom urls</legend>
-    
+
         {{ form|crispy }}
-    
+
         <button type="submit" class="btn btn-primary">Short it!</button>
         <button type="submit" class="btn btn-light">Update</button>
         <small>For updating, enter same slug again and change the url.</small>
@@ -29,6 +30,9 @@
 
 <div class="container text-center mt-5">
     <legend class="text-center"> Your Urls! </legend>
+    <div class="small">
+        <p>You have shortened {{ profile.no_of_urls }} urls. </p>
+    </div>
     <table class="table">
         <thead class="thead-primary">
             <th>Slug</th>
@@ -40,7 +44,10 @@
             <td><a href="{{url.url}}"> {{url.slug}} </a></td>
             <td> <a href="{{url.url}}">{{url.url}}</a></td>
             <td>
-                <form action="" class="form-group"></form>
+                <form action="{% url 'delete' url.slug %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
