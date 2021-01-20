@@ -1,9 +1,6 @@
-{% extends 'shorty/base.html' %}
+{% extends 'shorty/base.html' %} {% load crispy_forms_tags %} {% block content %}
 
-{% load crispy_forms_tags %}
-{% block content %}
-
-<div class="container-sm" style="max-width: 500px;">
+<div class="container-sm mt-5 shadow p-3 mb-5 bg-white rounded mx-auto" style="max-width: 500px;">
     <form action="/login" method="POST">
         {% csrf_token %}
 
