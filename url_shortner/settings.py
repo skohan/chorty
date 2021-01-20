@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,7 +87,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd668dftngearcv',
+#         'USER': 'zvjngrmjpelvwz',
+#         'PASSWORD': '0f9dd8f7aa112271d7e28e48a2770cbcd5a967e6584c4862fafdd1c80cbb905e',
+#         'HOST': '0f9dd8f7aa112271d7e28e48a2770cbcd5a967e6584c4862fafdd1c80cbb905e@ec2-54-88-130-244.compute-1.amazonaws.com:5432/d668dftngearcv',
+#         'PORT': '5432',
+#     }
+# }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
